@@ -20,17 +20,6 @@ public class CallbackOAuthProcessServlet
     private Log log = LogFactory.getLog(getClass());
 
 
-    private String fullRequestUri(HttpServletRequest request) {
-        String reqUrl = request.getRequestURL().toString();
-        String queryStringA = request.getQueryString();
-        if (queryStringA != null) {
-            reqUrl += "?"+queryStringA;
-        }
-        log.info("query string:" + queryStringA);
-        return reqUrl;
-    }
-
-
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
         log.info("Calling CallbackOAuthProcessServlet.doGet()");
@@ -69,6 +58,17 @@ public class CallbackOAuthProcessServlet
 
         res.sendRedirect("index.html");
 
+    }
+
+
+    private String fullRequestUrl(HttpServletRequest request) {
+        String reqUrl = request.getRequestURL().toString();
+        String queryString = request.getQueryString();
+        if (queryString != null) {
+            reqUrl += "?"+queryString;
+        }
+        log.info("query string:" + queryStringA);
+        return reqUrl;
     }
 
 
