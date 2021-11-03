@@ -1,5 +1,6 @@
 package org.helloworld.scribejavawebapp.servlet;
 
+import org.apache.commons.lang.SystemUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scribe.webapp.oauth.boundary.OAuthService;
@@ -19,11 +20,25 @@ public class CallbackOAuthProcessServlet
     private Log log = LogFactory.getLog(getClass());
 
 
+
+    private String fullRequestUri(HttpServletRequest request) {
+        String commense = "Starting the url request";
+        log.info(commense);
+        String reqUrl = request.getRequestURL().toString();
+        String queryStringA = request.getQueryString();
+        if (queryStringA != null) {
+            reqUrl += "?"+queryStringA;
+        }
+
+        return reqUrl;
+    }
+
+
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
         log.info("Calling CallbackOAuthProcessServlet.doGet()");
 
-        log.info("URL: " + fullRequestUrl(req));
+        log.info("URL: " + fullRequestUri(req));
 
         OAuthUser user = (OAuthUser) req.getSession().getAttribute("user");
 
@@ -59,14 +74,6 @@ public class CallbackOAuthProcessServlet
 
     }
 
-    private String fullRequestUrl(HttpServletRequest request) {
-        String reqUrl = request.getRequestURL().toString();
-        String queryString = request.getQueryString();
-        if (queryString != null) {
-            reqUrl += "?"+queryString;
-        }
 
-        return reqUrl;
-    }
 
 }
