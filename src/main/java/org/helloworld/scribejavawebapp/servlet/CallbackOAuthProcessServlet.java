@@ -24,10 +24,10 @@ public class CallbackOAuthProcessServlet
             throws ServletException, IOException {
 
 
-        OAuthUser user = (OAuthUser) req.getSession().getAttribute("user");
+        OAuthUser client = (OAuthUser) req.getSession().getAttribute("client");
 
         String oAuthVerifier = req.getParameter("token");
-        user.setOAuthVerifier(oAuthVerifier);
+        client.setOAuthVerifier(oAuthVerifier);
         log.info("oAuthVerifier: " + oAuthVerifier);
 
         String oAuthToken = req.getParameter("oauth_token");
@@ -40,7 +40,7 @@ public class CallbackOAuthProcessServlet
         // calling service
         OAuthService service = new OAuthService();
         try {
-            user = service.readingUserData(user);
+            client = service.readingUserData(client);
         } catch (OAuthProviderException e) {
             log.error(e.getMessage(), e);
             throw new ServletException(e);
