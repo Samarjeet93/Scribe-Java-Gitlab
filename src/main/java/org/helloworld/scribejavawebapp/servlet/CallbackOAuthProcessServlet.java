@@ -34,9 +34,6 @@ public class CallbackOAuthProcessServlet
         String oAuthToken = req.getParameter("oauth_token");
         log.info("oAuthToken: " + oAuthToken);
 
-
-
-
         // calling service
         OAuthService service = new OAuthService();
         try {
