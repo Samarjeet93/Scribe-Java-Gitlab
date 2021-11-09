@@ -19,17 +19,15 @@ public class CallbackOAuthProcessServlet
 
     private Log log = LogFactory.getLog(getClass());
 
-    String = "checking somethings to test";
-
 
     protected void doGetRequest(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
 
 
-        OAuthUser client = (OAuthUser) req.getSession().getAttribute("client");
+        OAuthUser user = (OAuthUser) req.getSession().getAttribute("user");
 
         String oAuthVerifier = req.getParameter("token");
-        client.setOAuthVerifier(oAuthVerifier);
+        user.setOAuthVerifier(oAuthVerifier);
         log.info("oAuthVerifier: " + oAuthVerifier);
 
         String oAuthToken = req.getParameter("oauth_token");
@@ -39,11 +37,10 @@ public class CallbackOAuthProcessServlet
 
         log.info("URL: " + fullRequestUrl(req));
 
-
         // calling service
         OAuthService service = new OAuthService();
         try {
-            client = service.readingUserData(user);
+            user = service.readingUserData(user);
         } catch (OAuthProviderException e) {
             log.error(e.getMessage(), e);
             throw new ServletException(e);
