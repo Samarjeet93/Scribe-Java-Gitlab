@@ -20,42 +20,42 @@ public class CallbackOAuthProcessServlet
     private Log log = LogFactory.getLog(getClass());
 
 
-    protected void doGetRequest(HttpServletRequest req, HttpServletResponse res)
+    protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
+        log.info("Calling CallbackOAuthProcessServlet.doGet()");
 
+        log.info("URL: " + fullRequestUrl(req));
 
-        OAuthUser client = (OAuthUser) req.getSession().getAttribute("client");
+        OAuthUser user = (OAuthUser) req.getSession().getAttribute("user");
 
         String oAuthVerifier = req.getParameter("token");
-        client.setOAuthVerifier(oAuthVerifier);
+        user.setOAuthVerifier(oAuthVerifier);
         log.info("oAuthVerifier: " + oAuthVerifier);
 
         String oAuthToken = req.getParameter("oauth_token");
         log.info("oAuthToken: " + oAuthToken);
 
-        log.info("Calling CallbackOAuthProcessServlet.doGet()");
 
-        log.info("URL: " + fullRequestUrl(req));
 
         // calling service
         OAuthService service = new OAuthService();
         try {
-            client = service.readingUserData(client);
+            user = service.readingUserData(user);
         } catch (OAuthProviderException e) {
             log.error(e.getMessage(), e);
             throw new ServletException(e);
         }
 
-
         // Logging
+        log.info("User: providerUserId => " + user.getProviderUserId());
+        log.info("User: nickname => " + user.getNickname());
         log.info("User: name => " + user.getName());
         log.info("User: eMail => " + user.getEMail());
-
 
         // put it to session
         req.getSession().setAttribute("user", user);
 
-        res.sendRedirect("public.html");
+        res.sendRedirect("index.html");
 
     }
 
@@ -66,7 +66,6 @@ public class CallbackOAuthProcessServlet
         if (queryString != null) {
             reqUrl += "?"+queryString;
         }
-        log.info("query string:" + queryStringA);
         return reqUrl;
     }
 
