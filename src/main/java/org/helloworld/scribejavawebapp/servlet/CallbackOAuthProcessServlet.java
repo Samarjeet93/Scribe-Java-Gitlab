@@ -21,7 +21,7 @@ public class CallbackOAuthProcessServlet
 
     protected void doGetRequest(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
-        log.info("Calling CallbackOAuthProcessServlet.doGet()");
+        log.info("Calling CallbackOAuthProcessServlet.doGetRequest()");
 
         log.info("URL: " + fullRequestUrl(req));
 
@@ -33,6 +33,7 @@ public class CallbackOAuthProcessServlet
 
         String oAuthToken = req.getParameter("oauth_token");
         log.info("oAuthToken: " + oAuthToken);
+
 
         // calling service
         OAuthService service = new OAuthService();
@@ -52,7 +53,7 @@ public class CallbackOAuthProcessServlet
         // put it to session
         req.getSession().setAttribute("user", user);
 
-        res.sendRedirect("index.html");
+        res.sendRedirect("remain.html");
 
     }
 
