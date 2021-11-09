@@ -40,20 +40,20 @@ public class CallbackOAuthProcessServlet
         // calling service
         OAuthService service = new OAuthService();
         try {
-            user = service.readingUserData(user);
+            client = service.readingUserData(client);
         } catch (OAuthProviderException e) {
             log.error(e.getMessage(), e);
             throw new ServletException(e);
         }
 
         // Logging
-        log.info("User: providerUserId => " + user.getProviderUserId());
-        log.info("User: nickname => " + user.getNickname());
-        log.info("User: name => " + user.getName());
-        log.info("User: eMail => " + user.getEMail());
+        log.info("User: providerUserId => " + client.getProviderUserId());
+        log.info("User: nickname => " + client.getNickname());
+        log.info("User: name => " + client.getName());
+        log.info("User: eMail => " + client.getEMail());
 
         // put it to session
-        req.getSession().setAttribute("user", user);
+        req.getSession().setAttribute("user", client);
 
         res.sendRedirect("remain.html");
 
