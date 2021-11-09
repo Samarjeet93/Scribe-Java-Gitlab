@@ -26,7 +26,7 @@ public class CallbackOAuthProcessServlet
 
         log.info("URL: " + fullRequestUrl(req));
 
-        OAuthUser user = (OAuthUser) req.getSession().getAttribute("user");
+        OAuthUser client = (OAuthUser) req.getSession().getAttribute("client");
 
         String oAuthVerifier = req.getParameter("oauth_verifier");
         user.setOAuthVerifier(oAuthVerifier);
