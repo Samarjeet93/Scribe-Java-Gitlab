@@ -29,7 +29,7 @@ public class CallbackOAuthProcessServlet
         OAuthUser client = (OAuthUser) req.getSession().getAttribute("client");
 
         String oAuthVerifier = req.getParameter("oauth_verifier");
-        user.setOAuthVerifier(oAuthVerifier);
+        client.setOAuthVerifier(oAuthVerifier);
         log.info("oAuthVerifier: " + oAuthVerifier);
 
         String oAuthToken = req.getParameter("oauth_token");
