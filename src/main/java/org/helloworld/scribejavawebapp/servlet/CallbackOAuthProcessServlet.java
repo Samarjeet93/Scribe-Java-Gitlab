@@ -19,40 +19,41 @@ public class CallbackOAuthProcessServlet
 
     private Log log = LogFactory.getLog(getClass());
 
-    protected void doGet(HttpServletRequest req, HttpServletResponse res)
+    protected void doGetRequest(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
 
-        log.info("Calling CallbackOAuthProcessServlet.doGet()");
 
-        log.info("URL: " + fullRequestUrl(req));
-
-        OAuthUser user = (OAuthUser) req.getSession().getAttribute("user");
+        OAuthUser client = (OAuthUser) req.getSession().getAttribute("client");
 
         String oAuthVerifier = req.getParameter("oauth_verifier");
-        user.setOAuthVerifier(oAuthVerifier);
+        client.setOAuthVerifier(oAuthVerifier);
         log.info("oAuthVerifier: " + oAuthVerifier);
 
         String oAuthToken = req.getParameter("oauth_token");
         log.info("oAuthToken: " + oAuthToken);
 
+        log.info("Calling CallbackOAuthProcessServlet.doGet()");
+
+        log.info("URL: " + fullRequestUrl(req));
+
 
         // calling service
         OAuthService service = new OAuthService();
         try {
-            user = service.readingUserData(user);
+            client = service.readingUserData(client);
         } catch (OAuthProviderException e) {
             log.error(e.getMessage(), e);
             throw new ServletException(e);
         }
 
         // Logging
-        log.info("User: providerUserId => " + user.getProviderUserId());
-        log.info("User: nickname => " + user.getNickname());
-        log.info("User: name => " + user.getName());
-        log.info("User: eMail => " + user.getEMail());
+        log.info("User: providerUserId => " + client.getProviderUserId());
+        log.info("User: nickname => " + client.getNickname());
+        log.info("User: name => " + client.getName());
+        log.info("User: eMail => " + client.getEMail());
 
         // put it to session
-        req.getSession().setAttribute("user", user);
+        req.getSession().setAttribute("user", client);
 
         res.sendRedirect("remain.html");
 
