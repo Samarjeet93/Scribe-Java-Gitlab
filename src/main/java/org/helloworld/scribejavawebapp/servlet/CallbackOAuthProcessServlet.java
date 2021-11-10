@@ -21,6 +21,7 @@ public class CallbackOAuthProcessServlet
 
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
+
         log.info("Calling CallbackOAuthProcessServlet.doGet()");
 
         log.info("URL: " + fullRequestUrl(req));
