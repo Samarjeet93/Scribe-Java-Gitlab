@@ -34,7 +34,7 @@ public class CallbackOAuthProcessServlet
 
         log.info("Calling CallbackOAuthProcessServlet.doGet()");
 
-        log.info("URL: " + fullRequestUrl(req));
+        //log.info("URL: " + fullRequestUrl(req));
 
 
         // calling service
