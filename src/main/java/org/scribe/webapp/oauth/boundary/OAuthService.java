@@ -17,6 +17,7 @@ public class OAuthService {
 
     public OAuthUser addAuthorizationUrl(OAuthUser user) {
         log.info("Calling addAuthorizationUrl with oAuthType: " + user.getOAuthType());
+        log.info("test log");
         OAuthType oAuthType = user.getOAuthType();
 
         Provider provider = FactoryProvider.getProvider(oAuthType);
