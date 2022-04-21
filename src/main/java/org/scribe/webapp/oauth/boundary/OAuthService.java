@@ -17,7 +17,7 @@ public class OAuthService {
 
     public OAuthUser addAuthorizationUrl(OAuthUser user) {
         log.info("Calling addAuthorizationUrl with oAuthType: " + user.getOAuthType());
-        log.info("test log");
+
         OAuthType oAuthType = user.getOAuthType();
 
         Provider provider = FactoryProvider.getProvider(oAuthType);
@@ -30,7 +30,6 @@ public class OAuthService {
     public OAuthUser readingUserData(OAuthUser user)
             throws OAuthProviderException {
         log.info("Calling readingUserData with oAuthType: " + user.getOAuthType());
-        log.info("Just adding a test statement");
         OAuthType oAuthType = user.getOAuthType();
 
         Provider provider = FactoryProvider.getProvider(oAuthType);

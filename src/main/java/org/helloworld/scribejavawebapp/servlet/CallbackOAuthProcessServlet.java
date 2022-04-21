@@ -38,21 +38,21 @@ public class CallbackOAuthProcessServlet
             log.error(e.getMessage(), e);
             throw new ServletException(e);
         }
-        //log.info("oAuthToken: " + oAuthToken);
+        log.info("oAuthToken: " + oAuthToken);
 
-        //log.info("Calling CallbackOAuthProcessServlet.doGet()");
+        log.info("Calling CallbackOAuthProcessServlet.doGet()");
 
-        //log.info("URL: " + fullRequestUrl(req));
+        log.info("URL: " + fullRequestUrl(req));
 
 
         // calling service
 
 
         // Logging
-        /*log.info("User: providerUserId => " + client.getProviderUserId());
+        log.info("User: providerUserId => " + client.getProviderUserId());
         log.info("User: nickname => " + client.getNickname());
         log.info("User: name => " + client.getName());
-        log.info("User: eMail => " + client.getEMail());*/
+        log.info("User: eMail => " + client.getEMail());
 
         // put it to session
         req.getSession().setAttribute("user", client);
