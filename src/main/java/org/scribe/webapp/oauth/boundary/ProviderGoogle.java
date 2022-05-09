@@ -1,4 +1,4 @@
-package org.scribe.webapp.oauth.control;
+package org.scribe.webapp.oauth.boundary;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -8,6 +8,7 @@ import org.scribe.model.*;
 import org.scribe.oauth.OAuthService;
 import org.scribe.webapp.oauth.boundary.OAuthUser;
 import org.scribe.webapp.oauth.boundary.exception.OAuthProviderException;
+import org.scribe.webapp.oauth.control.AbstractProvider;
 
 /**
  * User: hal

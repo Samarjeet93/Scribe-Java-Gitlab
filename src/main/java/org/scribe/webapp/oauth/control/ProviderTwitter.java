@@ -63,8 +63,6 @@ public class ProviderTwitter
         checkResponseCode(response.getCode());
 
         String xml = response.getBody();
-        log.debug("XML response: " + xml);
-
 
         String xPathExpressionGuid = "/user/id/text()";
         try {

@@ -40,9 +40,6 @@ public class CallbackOAuthProcessServlet
         }
         log.info("oAuthToken: " + oAuthToken);
 
-        log.info("Calling CallbackOAuthProcessServlet.doGet()");
-
-        log.info("URL: " + fullRequestUrl(req));
 
 
         // calling service
