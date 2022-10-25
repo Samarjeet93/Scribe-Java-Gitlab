@@ -1,6 +1,7 @@
 package org.scribe.webapp.oauth.control;
 
 import org.scribe.webapp.oauth.boundary.OAuthType;
+import org.scribe.webapp.oauth.boundary.ProviderGoogle;
 
 /**
  * User: hal
