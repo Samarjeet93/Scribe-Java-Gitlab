@@ -22,5 +22,5 @@ create_mlhotspot_job:
     pull_policy: always
   script:
     - echo "image pulled"
-    - "GIT_URL_FORMAT=https://github.com/helloworld121/{}.git" hotspot-task
+    - GIT_URL_FORMAT=https://github.com/helloworld121/{}.git hotspot-task
 
