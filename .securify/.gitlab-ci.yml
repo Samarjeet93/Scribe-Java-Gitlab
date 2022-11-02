@@ -22,5 +22,5 @@ create_mlhotspot_job:
     pull_policy: always
   script:
     - echo "image pulled"
-    - SEIDR_SUBSCRIPTION_ID=3eac6e48-7bfd-4b66-8b37-ec92cc385355 hotspot-task
+    - SEIDR_SUBSCRIPTION_ID=3eac6e48-7bfd-4b66-8b37-ec92cc385355 SEIDR_PROJECT_ID=ca79c3db-57ae-4f4e-80fd-2823e6936f1c hotspot-task
 
