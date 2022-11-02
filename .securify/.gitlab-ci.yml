@@ -18,7 +18,7 @@
 
 create_mlhotspot_job:
   image:
-    name: acrinline.azurecr.io/ml-hotspots
+    name: acrinline.azurecr.io/ml-hotspots:latest
     pull_policy: always
   script:
     - echo "image pulled"
